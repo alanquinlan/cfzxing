@@ -1,0 +1,33 @@
+{
+    "author":"Alan Quinlan",
+    "bugs":"",
+    "changelog":"",
+    "contributors":[],
+    "dependencies":{
+        "cbjavaloader":"^2.0.0+49"
+    },
+    "description":"A barcode generator using the ZXING java library. Supports: AZTEC, CODABAR, CODE_39, CODE_93, CODE_128, DATA_MATRIX, EAN_8, EAN_13, ITF, QR_CODE ,UPC_A",
+    "devDependencies":{},
+    "documentation":"",
+    "homepage":"https://github.com/alanquinlan/cfzxing",
+    "location":"ForgeboxStorage",
+    "private":false,
+    "projectURL":"",
+    "repository":{
+        "type":"",
+        "URL":""
+    },
+    "name":"CFzxing",
+    "shortDescription":"A barcode generator using the ZXING java library.",
+    "slug":"CFzxing",
+    "type":"modules",
+    "version":"1.0.0",
+    "ignore":[
+        "**/.*",
+        "tests/*",
+        ".git*"
+    ],
+    "installPaths":{
+        "cbjavaloader":"modules/cbjavaloader/"
+    }
+}
