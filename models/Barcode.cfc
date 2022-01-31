@@ -24,7 +24,7 @@ component singleton="true" {
 		"UPC_A"       : "com.google.zxing.oned.UPCAWriter"
 		// 'UPC_E': 'com.google.zxing.oned.UPCEWriter',
 		// 'UPC_EAN_EXTENSION': 'com.google.zxing.oned.UPCEANWriter'
-	}
+	};
 
 
 
