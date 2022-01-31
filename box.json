@@ -21,7 +21,7 @@
     "shortDescription":"A barcode generator using the ZXING java library.",
     "slug":"CFzxing",
     "type":"modules",
-    "version":"1.0.0",
+    "version":"1.1.0",
     "ignore":[
         "**/.*",
         "tests/*",
