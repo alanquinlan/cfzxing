@@ -1,7 +1,7 @@
 /**
  * https://zxing.github.io/zxing/apidocs/
  */
-component singleton="true" {
+component singleton="true" accessors="true" {
 
 	property name="javaloader" inject="loader@cbjavaloader";
 
