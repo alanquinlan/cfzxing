@@ -1,10 +1,9 @@
 /**
  * https://zxing.github.io/zxing/apidocs/
  */
-component singleton="true" {
+component singleton="true" accessors="true" {
 
 	property name="javaloader" inject="loader@cbjavaloader";
-
 
 	variables.codes = {
 		"AZTEC"       : "com.google.zxing.aztec.AztecWriter",
@@ -24,19 +23,42 @@ component singleton="true" {
 		"UPC_A"       : "com.google.zxing.oned.UPCAWriter"
 		// 'UPC_E': 'com.google.zxing.oned.UPCEWriter',
 		// 'UPC_EAN_EXTENSION': 'com.google.zxing.oned.UPCEANWriter'
+	};
+
+	/**
+	 * Decode a barcode image into a string.  Useful for reading the url inside a QR code.
+	 *
+	 * @image    A CFML Image variable
+	 *
+	 * @returns  The string encoded in the barcode image.
+	 */
+	public string function decode( required any image ) {
+		var binaryBitmap = variables.javaloader.create( "com.google.zxing.BinaryBitmap" ).init(
+			variables.javaloader.create( "com.google.zxing.common.HybridBinarizer" ).init(
+				variables.javaloader.create( "com.google.zxing.client.j2se.BufferedImageLuminanceSource" ).init(
+					imageGetBufferedImage( arguments.image )
+				)
+			)
+		);
+
+		var result = variables.javaloader.create( "com.google.zxing.MultiFormatReader" ).init().decode( binaryBitmap );
+
+		return result.getText();
 	}
 
 
 
 	/**
-	 * Undocumented function
+	 * Generates a barcode image with the given contents encoded in it.
 	 *
-	 * @contents
-	 * @type
-	 * @width
-	 * @height
+	 * @contents  The contents to encode.
+	 * @type      The barcode type to generate.
+	 * @width     The width of the barcode.
+	 * @height    The height of the barcode.
+	 *
+	 * @returns   A CFML Image variable of the barcode.
 	 */
-	any function getBarcodeImage(
+	public any function getBarcodeImage(
 		required string contents,
 		required string type,
 		required numeric width,
@@ -77,13 +99,14 @@ component singleton="true" {
 	/**
 	 * Write the barcode image to a destination
 	 *
-	 * @contents
-	 * @width
-	 * @height
-	 * @destination
-	 * @overwrite
+	 * @contents     The contents to encode.
+	 * @type         The barcode type to generate.
+	 * @width        The width of the barcode.
+	 * @height       The height of the barcode.
+	 * @destination  The destination path to write the image.
+	 * @overwrite    Flag to overwrite the destination path, if needed. Default: true.
 	 */
-	void function writeBarcodeImage(
+	public void function writeBarcodeImage(
 		required string contents,
 		required string type,
 		required numeric width,
